@@ -3,6 +3,7 @@ import random
 import os
 
 # Create your models here.
+from django.urls import reverse
 
 
 def get_filename_extension(filepath):
@@ -57,7 +58,8 @@ class ProductModel(models.Model):
     objects = ProductModelManager()
 
     def get_absolute_url(self):
-        return "/products/{slug}/".format(slug=self.slug)
+        # return "/products/{slug}/".format(slug=self.slug)
+        return reverse("prod_detail", kwargs={"slug":self.slug})
 
     def __str__(self):
         return self.title
