@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+
+{# includs boby of this page#}
+{% block body %}
+
+    <div class="container">
+     <form method="post">
+         {% csrf_token %}
+         {{ form.as_p }}
+        <button type="submit">Submit</button>
+     </form>
+    </div>
+
+
+{% endblock %}
