@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Featured</title>
+{% endblock %}
+
+
+{% block body %}
+
+{{ object.id }} <br>
+{{ object.title }} <br>
+{{ object.description }} <br>
+{{ object.price }} <br>
+{#{{ object.image.url }} <br>#}
+{% if object.image %}
+    <img src="{{ object.image.url }}" class="img-fluid"/>
+{% endif %}
+
+
+{% endblock %}

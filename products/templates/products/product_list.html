@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Products</title>
+{% endblock %}
+
+
+{% block body %}
+
+        <div class="container">
+            {% for objects in object_list %}
+                {% include 'products/bootstrap/cards.html' with obj=objects %}
+                <a href="{{ objects.get_absolute_url }}">{{ objects.title }}</a> <br>
+             {% endfor %}
+        {#  {{ objects.title }} <br>#}
+
+        </div>
+
+
+
+{% endblock %}
