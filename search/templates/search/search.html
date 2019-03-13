@@ -9,9 +9,19 @@
 
         <div class="container">
         <div class="row">
+
+        {% if request.GET.q %}
+        <div class="col-12 mb-2">
+            Results for {{ request.GET.q }}
+            <hr/>
+        </div>
+        {% else %}
+
+        {% endif %}
+
             {% for objects in object_list %}
                 <div class="col">
-                {{ forloop.counter }}
+{#                {{ forloop.counter }}#}
                 {% include 'products/bootstrap/cards.html' with obj=objects %}
                     {% if forloop.counter|divisibleby:3 %}
                     </div> </div><div class="row"><div class="col-12"><hr/></div>

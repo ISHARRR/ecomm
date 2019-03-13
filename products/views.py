@@ -27,6 +27,7 @@ class ProductListView(ListView):
         obj = ProductModel.objects.all()
         return obj
 
+
 class ProductDetailSlugView(DetailView):
     queryset = ProductModel.objects.all()
     template_name = "products/product_detail.html"

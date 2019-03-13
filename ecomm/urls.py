@@ -27,15 +27,21 @@ from products.views import (ProductListView,
                             ProductFeaturedListView,
                             )
 
+from search.views import (SearchProductListView)
+from carts.views import (cart_yard)
+
 urlpatterns = [
     path('', home_page, name="home"),
     path('about/', about_page, name="about"),
     path('contact/', contact_page, name="contact_us"),
     path('login/', login_page, name="login"),
-    path('register/', register_page, name="register"),
+    path('login/', login_page, name="login"),
     # path('products/', ProductListView.as_view(), namespace="products"),
     path('products/', ProductListView.as_view(), name="products"),
+    path('search/', SearchProductListView.as_view(), name="search"),
     re_path(r'^products/(?P<slug>[\w-]+)/$', ProductDetailSlugView.as_view(), name='prod_detail'),
+    path('cart/', cart_yard, name="cart"),
+
     # path('featured/', ProductFeaturedListView.as_view()),
     # path('featured/<int:pk>/', ProductFeaturedDetailView.as_view()),
     # path('products/<int:pk>/', ProductDetailView.as_view()),
