@@ -7,5 +7,18 @@
 
 {% block body %}
 
+      <div class="container">
+        <div class="row">
+            <h1>{{ object.title }}</h1>
+        </div>
+      <div class="col-12 col-md-6">
+          {{ cart }}
+          {% if object in cart.product.all %}
+              Added to Cart
+              {% else %}
+              Add to Cart
+          {% endif %}
+      </div>
+      </div>
 
 {% endblock %}

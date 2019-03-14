@@ -28,7 +28,7 @@ from products.views import (ProductListView,
                             )
 
 from search.views import (SearchProductListView)
-from carts.views import (cart_yard)
+from carts.views import (cart_yard, cart_update)
 
 urlpatterns = [
     path('', home_page, name="home"),
@@ -41,6 +41,7 @@ urlpatterns = [
     path('search/', SearchProductListView.as_view(), name="search"),
     re_path(r'^products/(?P<slug>[\w-]+)/$', ProductDetailSlugView.as_view(), name='prod_detail'),
     path('cart/', cart_yard, name="cart"),
+    path('cart-update/', cart_update, name="cart_update"),
 
     # path('featured/', ProductFeaturedListView.as_view()),
     # path('featured/<int:pk>/', ProductFeaturedDetailView.as_view()),

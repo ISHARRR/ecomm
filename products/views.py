@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView
 
 from . models import ProductModel
 
+from carts.models import Cart
 
 class ProductFeaturedListView(ListView):
     template_name = "products/product_list.html"
@@ -31,6 +32,12 @@ class ProductListView(ListView):
 class ProductDetailSlugView(DetailView):
     queryset = ProductModel.objects.all()
     template_name = "products/product_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductDetailSlugView, self).get_context_data(**kwargs)
+        cart_object, new_object = Cart.objects.new_get(self.request)
+        context['cart'] = cart_object
+        return context
 
     def get_object(self, *args, **kwargs):
         request = self.request
