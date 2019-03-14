@@ -6,19 +6,64 @@
 
 
 {% block body %}
+<div class="container">
+    {% if cart.product.exists %}
 
-      <div class="container">
-        <div class="row">
-            <h1>{{ object.title }}</h1>
-        </div>
-      <div class="col-12 col-md-6">
-          {{ cart }}
-          {% if object in cart.product.all %}
-              Added to Cart
-              {% else %}
-              Add to Cart
-          {% endif %}
-      </div>
-      </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Product</th>
+              <th scope="col"></th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for product in cart.product.all %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ product.title }}
+              </td>
+
+              <td><a href="{{ product.get_absolute_url }}"></a>
+                    <div>
+                        {% include 'products/bootstrap/update_the_cart.html' with product=product cart=cart in_cart=True %}
+                    </div>
+              </td>
+              <td>{{ product.price }}</td>
+            </tr>
+          {% endfor %}
+            <tr>
+              <td colspan="3"></td>
+              <td><b>Subtotal</b> {{ cart.subtotal }}</td>
+            </tr>
+            <tr>
+              <td colspan="3"></td>
+              <td><b>Total Price</b> {{ cart.total }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+    {% else %}
+
+        <h2>You cart is empty</h2>
+
+    {% endif %}
+</div>
+
+{#      <div class="container">#}
+{#        <div class="row">#}
+{#            <h1>{{ object.title }}</h1>#}
+{#        </div>#}
+{#      <div class="col-12 col-md-6">#}
+{#          {{ cart }}#}
+{#          {% if object in cart.product.all %}#}
+{#              Added to Cart#}
+{#              {% else %}#}
+{#              Add to Cart#}
+{#          {% endif %}#}
+{#      </div>#}
+{#      </div>#}
 
 {% endblock %}

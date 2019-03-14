@@ -7,22 +7,20 @@
 
 {% block body %}
 
-{{ object.id }} <br>
-{{ object.title }} <br>
-{{ object.description }} <br>
-{{ object.price }} <br>
-{#{{ object.image.url }} <br>#}
-{% if object.image %}
-    <img src="{{ object.image.url }}" class="img-fluid"/>
-{% endif %}
+    <div class="row">
+        <div class="col-12 col-md-6">
+            {{ object.id }} <br>
+            {{ object.title }} <br>
+            {{ object.description }} <br>
+            {{ object.price }} <br>
+            {#{{ object.image.url }} <br>#}
+            {% if object.image %}
+                <img src="{{ object.image.url }}" class="img-fluid"/>
+            {% endif %}
+        </div>
+        <div class="col-12 col-md-6">
+            {% include 'products/bootstrap/update_the_cart.html' with product=object cart=cart %}
 
-<div class="col-12 col-md-6">
-  {{ cart }}
-  {% if object in cart.product.all %}
-      Added to Cart
-      {% else %}
-      Add to Cart
-  {% endif %}
-</div>
-
+        </div>
+    </div>
 {% endblock %}

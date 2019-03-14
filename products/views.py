@@ -7,6 +7,7 @@ from . models import ProductModel
 
 from carts.models import Cart
 
+
 class ProductFeaturedListView(ListView):
     template_name = "products/product_list.html"
 
