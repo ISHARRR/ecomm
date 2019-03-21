@@ -6,14 +6,15 @@
 
 
 {% block body %}
-
+<div class="container">
     <div class="row">
         <div class="col-12 col-md-6">
-            {{ object.id }} <br>
-            {{ object.title }} <br>
-            {{ object.description }} <br>
-            {{ object.price }} <br>
-            {#{{ object.image.url }} <br>#}
+            <h6>Product ID: {{ object.id }} <br> </h6>
+            <h6>Product Name: {{ object.title }} <br> </h6>
+            <h6>Product Description: {{ object.description }} <br> </h6>
+            <h6>Product Price: £{{ object.price }} <br> </h6>
+            <br>
+                {#{{ object.image.url }} <br>#}
             {% if object.image %}
                 <img src="{{ object.image.url }}" class="img-fluid"/>
             {% endif %}
@@ -23,4 +24,5 @@
 
         </div>
     </div>
+</div>
 {% endblock %}

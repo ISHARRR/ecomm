@@ -42,9 +42,11 @@
     {% url 'about' as aboutUrl %}
     {% url 'contact_us' as contact_usUrl %}
     {% url 'login' as loginUrl %}
-{#    {% url 'login' as loginUrl %}#}
+    {% url 'logout' as logoutUrl %}
     {% url 'register' as registerUrl %}
     {% url 'cart' as cartUrl %}
+    {% url 'profile' as profileUrl %}
+    {% url 'update_password' as updatePassUrl %}
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -73,12 +75,21 @@
         <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
       </li>
     {% if request.user.is_authenticated %}
-        <li class="nav-item {% if request.path == loginUrl %} active {% endif %}">
-        <a class="nav-link" href="">logout</a>
+        <li class="nav-item {% if request.path == logoutUrl %} active {% endif %}">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+        <li class="nav-item {% if request.path == profileUrl %} active {% endif %}">
+        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+      </li>
+        <li class="nav-item {% if request.path == updatePassUrl %} active {% endif %}">
+        <a class="nav-link" href="{% url 'update_password' %}">Change Password</a>
       </li>
     {% else %}
         <li class="nav-item {% if request.path == loginUrl %} active {% endif %}">
         <a class="nav-link" href="{% url 'login' %}">login</a>
+      </li>
+        <li class="nav-item {% if request.path == registerUrl %} active {% endif %}">
+        <a class="nav-link" href="{% url 'register' %}">Register</a>
       </li>
           <li class="nav-item {% if request.path == contact_usUrl %} active {% endif %}">
         <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
@@ -95,6 +106,7 @@
   </div>
 
 </nav>
+<hr>
   <br>
 
 
@@ -103,7 +115,64 @@
 
 {% endblock %}
 
+{#FOOTER#}
+<br>
+<br>
+<br>
+<br>
+<body>
+<div class="content" >
+<hr>
+    <footer id="myFooter" class="bg-light">
+        <div class="container">
+            <div class="row" style="padding: 5px">
+                <div class="col-sm-3" >
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="{% url 'home' %}"">Home</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="{% url 'contact_us' %}">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Here we use the Google Embed API to show Google Maps. -->
+            <!-- In order for this to work in your project you will need to generate a unique API key.  -->
+            <div class="container">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                  <iframe frameborder="0" style="border:0"
+                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.217456881076!2d-0.10330624870451857!3d51.527571237327635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761ca7b1d83351%3A0x570d19c20ab22a83!2sCity%2C+University+of+London!5e0!3m2!1sen!2suk!4v1553189565843" allowfullscreen>
 
+                  </iframe>
+            </div>
+            </div>
+        </div>
+        <div class="social-networks">
+            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+        </div>
+    </footer>
+</div>
+</body>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

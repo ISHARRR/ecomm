@@ -1,16 +1,32 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>{{ title }}</title>
+    <title>Products</title>
 {% endblock %}
 
 
-{# includs boby of this page#}
 {% block body %}
 
-    <div class="container">
-        <h1>hello world</h1>
+{#    {% if object in object.feature is True %}#}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+
+{#            <h6>Product ID: {{ object.id }} <br> </h6>#}
+{#            <h6>Product Name: {{ object.title }} <br> </h6>#}
+{#            <h6>Product Description: {{ object.description }} <br> </h6>#}
+{#            <h6>Product Price: £{{ object.price }} <br> </h6>#}
+{#            <br>#}
+                {#{{ object.image.url }} <br>#}
+{#            {% if object.image %}#}
+{#                <img src="{{ object.image.url }}" class="img-fluid"/>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#        <div class="col-12 col-md-6">#}
+{#            {% include 'products/bootstrap/update_the_cart.html' with product=object cart=cart %}#}
+
+        </div>
     </div>
-
-
+</div>
+{#    {% endif %}#}
 {% endblock %}

@@ -1,15 +1,21 @@
 from django import forms
 from django.contrib.auth import get_user_model
-
+from django.contrib.auth.forms import UserChangeForm
 
 User = get_user_model()
 
 
 class ContactForm(forms.Form):
-    fullname = forms.CharField(widget=forms.TextInput(
+    firstname = forms.CharField(widget=forms.TextInput(
         attrs={
             "class": "form-control",
-            "placeholder": "Full Name",
+            "placeholder": "First Name",
+        }
+    ))
+    lastname = forms.CharField(widget=forms.TextInput(
+        attrs={
+            "class": "form-control",
+            "placeholder": "Last Name",
         }
     ))
     email = forms.EmailField(widget=forms.EmailInput(
@@ -38,10 +44,22 @@ class RegisterForm(forms.Form):
             "class": "form-control",
             "placeholder": "Username",
         }))
+    firstname = forms.CharField(widget=forms.TextInput(
+        attrs={
+            "class": "form-control",
+            "placeholder": "First Name",
+        }
+    ))
+    lastname = forms.CharField(widget=forms.TextInput(
+        attrs={
+            "class": "form-control",
+            "placeholder": "Last Name",
+        }
+    ))
     email = forms.EmailField(widget=forms.EmailInput(
         attrs={
             "class": "form-control",
-            "placeholder": "Full Name",
+            "placeholder": "email",
         }
     ))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control"}))
@@ -70,3 +88,16 @@ class RegisterForm(forms.Form):
         if password2 != password:
             raise forms.ValidationError("Passwords do not match")
         return data
+
+
+class UpdateProfile(UserChangeForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = (
+            'first_name',
+            'last_name',
+            'email',
+            'password'
+        )

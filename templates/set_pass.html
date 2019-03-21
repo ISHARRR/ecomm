@@ -1,22 +1,18 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>{{ title }}</title>
+    <title>Reset Password</title>
 {% endblock %}
 
-
-{# includs boby of this page#}
 {% block body %}
 
     <div class="container">
-       <h1>Register</h1>
+    <h2>Enter your new password</h2>
         <br>
-        <form method="post">
+     <form method="post">
          {% csrf_token %}
          {{ form.as_p }}
-        <button type="submit">Register</button>
+        <button type="submit">Reset Password</button>
      </form>
     </div>
-
-
 {% endblock %}
