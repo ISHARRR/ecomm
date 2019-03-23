@@ -1,6 +1,7 @@
 from django.db import models
 import random
 import os
+import django_filters
 
 # Create your models here.
 from django.urls import reverse
@@ -63,3 +64,13 @@ class ProductModel(models.Model):
 
     def __str__(self):
         return self.title
+
+#
+# class ProductFilter(django_filters.FilterSet):
+#     name = django_filters.CharFilter(lookup_expr='iexact')
+#
+#     class Meta:
+#         model = ProductModel
+#         fields = ['price', 'title']
+
+

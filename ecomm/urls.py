@@ -21,7 +21,8 @@ from django.contrib import admin
 from django.contrib.auth.views import (
     LogoutView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView)
 from django.urls import path, re_path
-from . views import home_page, contact_page, login_page, about_page, register_page, profile, update_password, update_profile
+from . views import home_page, login_page, about_page, register_page, profile, update_password, update_profile
+from contact.views import contact
 from products.views import (ProductListView,
                             ProductDetailView,
                             ProductDetailSlugView,
@@ -35,7 +36,7 @@ from carts.views import (cart_yard, cart_update)
 urlpatterns = [
     path('', home_page, name="home"),
     path('about/', about_page, name="about"),
-    path('contact/', contact_page, name="contact_us"),
+    path('contact/', contact, name="contact_us"),
     path('login/', login_page, name="login"),
     path('register/', register_page, name="register"),
     path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),

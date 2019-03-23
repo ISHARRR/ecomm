@@ -5,67 +5,18 @@ from django.contrib.auth.forms import UserChangeForm
 User = get_user_model()
 
 
-class ContactForm(forms.Form):
-    firstname = forms.CharField(widget=forms.TextInput(
-        attrs={
-            "class": "form-control",
-            "placeholder": "First Name",
-        }
-    ))
-    lastname = forms.CharField(widget=forms.TextInput(
-        attrs={
-            "class": "form-control",
-            "placeholder": "Last Name",
-        }
-    ))
-    email = forms.EmailField(widget=forms.EmailInput(
-        attrs={
-            "class": "form-control",
-            "placeholder": "Full Name",
-        }
-    ))
-
-    content = forms.CharField(widget=forms.Textarea(
-        attrs={
-            "class": "form-control",
-            "placeholder": "Message",
-        }
-    ))
-
-
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(
-        attrs={
-            "class": "form-control",
-            "placeholder": "Username",
-        }))
-    firstname = forms.CharField(widget=forms.TextInput(
-        attrs={
-            "class": "form-control",
-            "placeholder": "First Name",
-        }
-    ))
-    lastname = forms.CharField(widget=forms.TextInput(
-        attrs={
-            "class": "form-control",
-            "placeholder": "Last Name",
-        }
-    ))
-    email = forms.EmailField(widget=forms.EmailInput(
-        attrs={
-            "class": "form-control",
-            "placeholder": "email",
-        }
-    ))
+    username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Username",}))
+    firstname = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "First Name",}))
+    lastname = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Last Name",}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": "email",}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control"}))
-
-    password2 = forms.CharField(widget=forms.PasswordInput(
-        attrs={"class": "form-control"}), label='Confirm password',)
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control"}), label='Confirm password',)
 
     def clean_username(self):
         username = self.cleaned_data.get('username')

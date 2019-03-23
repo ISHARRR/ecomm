@@ -1,7 +1,8 @@
 from django.contrib.auth import authenticate, login, get_user_model, update_session_auth_hash
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .forms import ContactForm, LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm
+# from .forms import ContactForm, LoginForm, RegisterForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.forms import PasswordChangeForm
@@ -72,19 +73,6 @@ def about_page(request):
 
     }
     return render(request, "about.html", content)
-
-
-def contact_page(request):
-    form = ContactForm(request.POST or None)
-    content = {
-        "title": "contact",
-        "content": "home page!",
-        "form": form,
-
-    }
-    if form.is_valid():
-        print(form.cleaned_data)
-    return render(request, "contact_page.html", content)
 
 
 @login_required()

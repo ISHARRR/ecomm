@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'products',
     'search',
     'carts',
+    'contact',
+
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -126,7 +128,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static_my_project"),
-    # '/var/www/static/',
+    # '/var/www/static_my_project/',
 ]
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "/Users/ishar/Desktop/ecomm/static_cdn", "static_root",)
