@@ -42,6 +42,8 @@
 
     {% url 'home' as homeUrl %}
     {% url 'products' as productsUrl %}
+    {% url 'sale' as saleUrl %}
+    {% url 'filter' as filterUrl %}
     {% url 'about' as aboutUrl %}
     {% url 'contact_us' as contact_usUrl %}
     {% url 'login' as loginUrl %}
@@ -71,12 +73,18 @@
       <li class="nav-item {% if request.path == productsUrl %} active {% endif %}">
         <a class="nav-link" href="{% url 'products' %}">Products</a>
       </li>
+        <li class="nav-item {% if request.path == saleUrl %} active {% endif %}">
+        <a class="nav-link" href="{% url 'sale' %}">Sale</a>
+      </li>
         <li class="nav-item {% if request.path == aboutUrl %} active {% endif %}">
         <a class="nav-link" href="{% url 'about' %}">About Us</a>
       </li>
         <li class="nav-item {% if request.path == contact_usUrl %} active {% endif %}">
         <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
       </li>
+{#        <li class="nav-item {% if request.path == filterUrl %} active {% endif %}">#}
+{#        <a class="nav-link" href="{% url 'filter' %}">Filter</a>#}
+{#      </li>#}
     {% if request.user.is_authenticated %}
         <li class="nav-item {% if request.path == logoutUrl %} active {% endif %}">
         <a class="nav-link" href="{% url 'logout' %}">Logout</a>

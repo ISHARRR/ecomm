@@ -40,4 +40,4 @@ def cart_update(request):
         else:
             cart_object.product.add(product_object)
         request.session["cart_total"] = cart_object.product.count()
-    return redirect('products')
+    return redirect('home')

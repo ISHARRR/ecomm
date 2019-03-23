@@ -4,6 +4,7 @@ import os
 import django_filters
 
 # Create your models here.
+from django.forms import forms
 from django.urls import reverse
 
 
@@ -26,6 +27,9 @@ class ProductQuerySet(models.query.QuerySet):
     def featured(self):
         return self.filter(featured=True)
 
+    def sale(self):
+        return self.filter(sale=True)
+
     def active(self):
         return self.filter(active=True)
 
@@ -39,6 +43,9 @@ class ProductModelManager(models.Manager):
 
     def features(self):
         return self.get_queryset().featured()
+
+    def sales(self):
+        return self.get_queryset().sale()
 
     def get_by_id(self, id):
         qs = self.get_queryset().filter(id=id)
@@ -55,6 +62,7 @@ class ProductModel(models.Model):
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
     featured = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
+    sale = models.BooleanField(default=False)
 
     objects = ProductModelManager()
 
@@ -65,12 +73,35 @@ class ProductModel(models.Model):
     def __str__(self):
         return self.title
 
-#
+
 # class ProductFilter(django_filters.FilterSet):
-#     name = django_filters.CharFilter(lookup_expr='iexact')
+#     title = django_filters.CharFilter(lookup_expr='icontains')
+#     price = django_filters.CharFilter(lookup_expr='iexact')
+#     description = django_filters.CharFilter(lookup_expr='icontains')
 #
 #     class Meta:
 #         model = ProductModel
-#         fields = ['price', 'title']
+#         exclude = ['image']
+#         fields = ['title', 'price', 'description', ]
 
+#
+# class ProductFilter(django_filters.FilterSet):
+#     class Meta:
+#         model = ProductModel
+#         fields = ['title', 'price']
+#         filter_overrides = {
+#             models.CharField: {
+#                 'filter_class': django_filters.CharFilter,
+#                 'extra': lambda f: {
+#                     'lookup_expr': 'icontains',
+#                 },
+#             },
+#             models.BooleanField: {
+#                 'filter_class': django_filters.BooleanFilter,
+#                 'extra': lambda f: {
+#                     'widget': forms.CheckboxInput,
+#                 },
+#             },
+#
+#        },
 

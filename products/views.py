@@ -4,22 +4,30 @@ from django.views.generic import ListView, DetailView
 # Create your views here.
 
 from . models import ProductModel
+# from . models import ProductModel, ProductFilter
 
 from carts.models import Cart
 
 
 class ProductFeaturedListView(ListView):
-    template_name = "products/product_list.html"
+    template_name = "home_page.html"
 
     def get_queryset(self, *args, **kwargs):
-        return ProductModel.objects.all().featured()
+        return ProductModel.objects.all().active().featured()
+
+
+class ProductSaleListView(ListView):
+    template_name = "sale.html"
+
+    def get_queryset(self, *args, **kwargs):
+        return ProductModel.objects.all().active().sale()
 
 
 class ProductFeaturedDetailView(DetailView):
     template_name = "products/featured_detail.html"
 
     def get_queryset(self, *args, **kwargs):
-        return ProductModel.objects.all().featured()
+        return ProductModel.objects.all().active().featured()
 
 
 class ProductListView(ListView):
@@ -55,6 +63,11 @@ class ProductDetailSlugView(DetailView):
         return obj
 
 
+# def product_list(request):
+#     filter_qs = ProductFilter(request.GET, queryset=ProductModel.objects.all())
+#     return render(request, 'sale.html', {'filter': filter_qs})
+
+
 class ProductDetailView(DetailView):
     # queryset = ProductModel.objects.all()
     template_name = "products/product_detail.html"
@@ -68,3 +81,4 @@ class ProductDetailView(DetailView):
         # request = self.request
         pk = self.kwargs.get("pk")
         return ProductModel.objects.filter(pk=pk)
+
