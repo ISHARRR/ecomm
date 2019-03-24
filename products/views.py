@@ -20,13 +20,6 @@ class ProductSale(ListView):
         return ProductModel.objects.all().active().sale()
 
 
-class ProductFeaturedDetail(DetailView):
-    template_name = "products/featured_detail.html"
-
-    def get_queryset(self, *args, **kwargs):
-        return ProductModel.objects.all().active().featured()
-
-
 class ProductList(ListView):
     template_name = "products/product_list.html"
 

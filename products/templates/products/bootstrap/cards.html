@@ -8,8 +8,13 @@
     <h5 class="card-title">{{ obj.title }}</h5>
     <p class="card-text">{{ obj.description }}</p>
     <p class="card-text">£{{ obj.price }}</p>
-    <a href="{{ obj.get_absolute_url }}" class="btn btn-primary">View</a>
-{#    <a href="{% url 'detail' slug=obj.slug %}" class="btn btn-primary">View</a>#}
+    {% if obj.sale == True %}
+        <h6 style="color:red" class="font-weight-bold">ON SALE!<br> </h6>
+    {% endif %}
+    {% if obj.featured == True %}
+        <h6 style="color:#b5b500" class="font-weight-bold">FEATURED!<br> </h6>
+    {% endif %}
+    <a href="{{ obj.get_absolute_url }}" class="btn btn-outline-primary">View</a>
   </div>
 </div>
 

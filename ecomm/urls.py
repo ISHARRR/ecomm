@@ -27,7 +27,6 @@ from products.views import (ProductList,
                             # ProductFilter,
                             ProductDetail,
                             ProductDetailSlug,
-                            ProductFeaturedDetail,
                             ProductFeatured,
                             ProductSale,
                             )
@@ -62,11 +61,6 @@ urlpatterns = [
             PasswordResetConfirmView.as_view(template_name='set_pass.html'), name='password_reset_confirm'),
     path('reset-password/complete', PasswordResetCompleteView.as_view(template_name='pass_reset_complete.html'),
          name='password_reset_complete'),
-
-    # path('featured/<int:pk>/', ProductFeaturedDetail.as_view()),
-    # path('products/<int:pk>/', ProductDetail.as_view()),
-
-
     path('admin/', admin.site.urls),
 
 ]

@@ -13,6 +13,14 @@
             <h6>Product Name: {{ object.title }} <br> </h6>
             <h6>Product Description: {{ object.description }} <br> </h6>
             <h6>Product Price: £{{ object.price }} <br> </h6>
+            {% if object.sale == True %}
+                <br>
+                <h6 style="color:red"  class="font-weight-bold">ON SALE!  <br> </h6>
+            {% endif %}
+            {% if object.featured == True %}
+                <br>
+                <h6 style="color:#b5b500"  class="font-weight-bold">FEATURED!  <br> </h6>
+            {% endif %}
             <br>
                 {#{{ object.image.url }} <br>#}
             {% if object.image %}

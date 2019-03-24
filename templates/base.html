@@ -1,6 +1,5 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
 
 {# HEAD #}
 <head>
@@ -12,8 +11,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script> 
-
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">#}
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -22,23 +21,111 @@
         <title>Login</title>
     {% endblock %}
 
-<style>
+    <style>
+
+        .fa {
+          padding: 20px;
+          font-size: 30px;
+          width: 50px;
+          text-align: center;
+          text-decoration: none;
+          margin: 5px 2px;
+        }
+
+        .fa-facebook-square {
+          text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+          color: #3B5998;
+        }
+
+        .fa-twitter-square {
+ text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+          color: #55ACEE;
+        }
+
+        .fa-instagram {
+ text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+          color: #125688;
+        }
+
+        .fa-pinterest {
+ text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+          color: #cb2027;
+        }
+
+        .fa-snapchat-square {
+
+          color: #fffc00;
+          text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
+
+        .fa-drupal {
+
+          color: #ffffff;
+          {#text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;#}
+        }
+
+        .navbar {
+            background-color: rgba(118, 119, 120, 0.91);
+            border-color: #E7E7E7;
+        }
+
+          .navbar-brand {
+            background-color: rgba(254, 255, 0, 0);
+            border-color: #E7E7E7;
+        }
+
+        .f-text {
+            background-color: rgba(250, 255, 255, 0.91);
+            border-color: #E7E7E7;
+        }
+
+        .footer{
+            background-color: rgba(130, 131, 132, 0.91);
+            border-color: #E7E7E7;
+        }
+
+        .iframe-container{
+    position: relative;
+    width: 100%;
+    padding-bottom: 30%; /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
+}
+.iframe-container > *{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.navbar .active {
+    text-decoration: underline;
+    font-weight: bold;
 
 
-</style>
+}
+
+
+{#        soical#}
+
+
+    </style>
 
 </head>
 
 {# BODY #}
-<body>
 <!-- pages - block of code that will vary -->
 {#nav bar#}
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'home' %}"> <i class="fab fa-drupal fa-3x" style="padding: 0%"></i> </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light ">
+    <a class="navbar-brand" href="{% url 'home' %}"> <i class="fab fa-drupal fa-3x" style="padding: 0%"></i> </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
     {% url 'home' as homeUrl %}
     {% url 'products' as productsUrl %}
@@ -54,71 +141,68 @@
     {% url 'update_password' as updatePassUrl %}
 
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item {% if request.path == homeUrl %} active {% endif %}">
-          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-      </li>
-{#      <li class="nav-item dropdown">#}
-{#        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-{#          Dropdown#}
-{#        </a>#}
-{#        <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
-{#          <a class="dropdown-item" href="#">Action</a>#}
-{#          <a class="dropdown-item" href="#">Another action</a>#}
-{#          <div class="dropdown-divider"></div>#}
-{#          <a class="dropdown-item" href="#">Something else here</a>#}
-{#        </div>#}
-{#      </li>#}
-      <li class="nav-item {% if request.path == productsUrl %} active {% endif %}">
-        <a class="nav-link" href="{% url 'products' %}">Products</a>
-      </li>
-        <li class="nav-item {% if request.path == saleUrl %} active {% endif %}">
-        <a class="nav-link" href="{% url 'sale' %}">Sale</a>
-      </li>
-        <li class="nav-item {% if request.path == aboutUrl %} active {% endif %}">
-        <a class="nav-link" href="{% url 'about' %}">About Us</a>
-      </li>
-        <li class="nav-item {% if request.path == contact_usUrl %} active {% endif %}">
-        <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
-      </li>
-{#        <li class="nav-item {% if request.path == filterUrl %} active {% endif %}">#}
-{#        <a class="nav-link" href="{% url 'filter' %}">Filter</a>#}
-{#      </li>#}
-    {% if request.user.is_authenticated %}
-        <li class="nav-item {% if request.path == logoutUrl %} active {% endif %}">
-        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-      </li>
-        <li class="nav-item {% if request.path == profileUrl %} active {% endif %}">
-        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-      </li>
-        <li class="nav-item {% if request.path == updatePassUrl %} active {% endif %}">
-        <a class="nav-link" href="{% url 'update_password' %}">Change Password</a>
-      </li>
-    {% else %}
-        <li class="nav-item {% if request.path == loginUrl %} active {% endif %}">
-        <a class="nav-link" href="{% url 'login' %}">login</a>
-      </li>
-        <li class="nav-item {% if request.path == registerUrl %} active {% endif %}">
-        <a class="nav-link" href="{% url 'register' %}">Register</a>
-      </li>
-          <li class="nav-item {% if request.path == contact_usUrl %} active {% endif %}">
-        <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
-      </li>
-    {% endif %}
-     <li class="nav-item {% if request.path == cartUrl %} active {% endif %}">
-        <a class="nav-link" href="{% url 'cart' %}"> <i class="fas fa-cart-arrow-down"></i> {{ request.session.cart_total }} </a>
-      </li>
-    </ul>
-    <form method="get" action="{% url "search" %}" class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value=" {{ request.GET.q }} ">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {% if request.path == homeUrl %} active {% endif %}">
+                <a class="nav-link" style="color: white" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            {#      <li class="nav-item dropdown">#}
+            {#        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+            {#          Dropdown#}
+            {#        </a>#}
+            {#        <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+            {#          <a class="dropdown-item" href="#">Action</a>#}
+            {#          <a class="dropdown-item" href="#">Another action</a>#}
+            {#          <div class="dropdown-divider"></div>#}
+            {#          <a class="dropdown-item" href="#">Something else here</a>#}
+            {#        </div>#}
+            {#      </li>#}
+            <li class="nav-item {% if request.path == productsUrl %} active {% endif %}" >
+                <a class="nav-link" style="color: white" href="{% url 'products' %}">Products</a>
+            </li>
+            <li class="nav-item {% if request.path == saleUrl %} active {% endif %}">
+                <a class="nav-link" style="color: white" href="{% url 'sale' %}">Sale</a>
+            </li>
+            <li class="nav-item {% if request.path == aboutUrl %} active {% endif %}">
+                <a class="nav-link" style="color: white" href="{% url 'about' %}">About Us</a>
+            </li>
+            <li class="nav-item {% if request.path == contact_usUrl %} active {% endif %}">
+                <a class="nav-link" style="color: white" href="{% url 'contact_us' %}">Contact Us</a>
+            </li>
+            {#        <li class="nav-item {% if request.path == filterUrl %} active {% endif %}">#}
+            {#        <a class="nav-link" href="{% url 'filter' %}">Filter</a>#}
+            {#      </li>#}
+            {% if request.user.is_authenticated %}
+                <li class="nav-item {% if request.path == logoutUrl %} active {% endif %}">
+                    <a class="nav-link" style="color: white" href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li class="nav-item {% if request.path == profileUrl %} active {% endif %}">
+                    <a class="nav-link" style="color: white" href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li class="nav-item {% if request.path == updatePassUrl %} active {% endif %}">
+                    <a class="nav-link" style="color: white" href="{% url 'update_password' %}">Change Password</a>
+                </li>
+            {% else %}
+                <li class="nav-item {% if request.path == loginUrl %} active {% endif %}">
+                    <a class="nav-link" style="color: white" href="{% url 'login' %}">login</a>
+                </li>
+                <li class="nav-item {% if request.path == registerUrl %} active {% endif %}">
+                    <a class="nav-link" style="color: white" href="{% url 'register' %}">Register</a>
+                </li>
+            {% endif %}
+            <li class="nav-item {% if request.path == cartUrl %} active {% endif %}">
+                <a class="nav-link" style="color: white" href="{% url 'cart' %}"> <i class="fas fa-cart-arrow-down"></i> {{ request.session.cart_total }} </a>
+            </li>
+        </ul>
+        <form method="get" action="{% url "search" %}" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" value=" {{ request.GET.q }} ">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
 
 </nav>
 <hr>
-  <br>
+<br>
 
 
 
@@ -127,64 +211,67 @@
 {% endblock %}
 
 {#FOOTER#}
-<br>
-<br>
-<br>
-<br>
-<body>
-<div class="content" >
-<hr>
-    <footer id="myFooter" class="bg-light">
-        <div class="container">
-            <div class="row" style="padding: 5px">
-                <div class="col-sm-4" >
-                    <h5>Get started</h5>
-                    <ul>
-                        <li><a href="{% url 'home' %}">Home</a></li>
-                        <li><a href="{% url 'register' %}">Register</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-4">
-                    <h5>About us</h5>
-                    <ul>
-                        <li><a href="{% url 'about' %}">About Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-4">
-                    <h5>Support</h5>
-                    <ul>
-                        <li><a href="{% url 'contact_us' %}">Contact us</a></li>
-                    </ul>
-                </div>
 
-            <!-- Here we use the Google Embed API to show Google Maps. -->
-            <!-- In order for this to work in your project you will need to generate a unique API key.  -->
-            <div class="container">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                  <iframe frameborder="0" style="border:0"
-                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.217456881076!2d-0.10330624870451857!3d51.527571237327635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761ca7b1d83351%3A0x570d19c20ab22a83!2sCity%2C+University+of+London!5e0!3m2!1sen!2suk!4v1553189565843" allowfullscreen>
 
-                  </iframe>
+
+<div class="container footer" >
+    <hr>
+    <div class="container">
+        <div class="row" style="padding: 5px">
+            <div class="col-sm-4 f_text" >
+                <h5 style="color: white" >Get started</h5>
+                <ul style="color: white">
+                    <li><a style="color: white" href="{% url 'home' %}">Home</a></li>
+                    <li><a style="color: white" href="{% url 'register' %}">Register</a></li>
+                </ul>
             </div>
+            <div class="col-sm-4 f_text">
+                <h5 style="color: white" >About us</h5>
+                <ul style="color: white" >
+                    <li><a style="color: white" href="{% url 'about' %}">About Us</a></li>
+                </ul>
             </div>
+            <div class="col-sm-4 f_text">
+                <h5 style="color: white">Support</h5>
+                <ul style="color: white" >
+                    <li><a style="color: white" href="{% url 'contact_us' %}">Contact us</a></li>
+                </ul>
+            </div>
+            <br>
+            <div class="container d-flex justify-content-center  ">
+                <a href="https://www.facebook.com/" ><i class="fab fa-facebook-square fa-5x"></i> <br> </a>
+                <a href="https://www.snapchat.com/" ><i class="fab fa-snapchat-square fa-5x"></i> <br> </a>
+                <a href="https://twitter.com/" ><i class="fab fa-twitter-square fa-5x"></i> <br> </a>
+                <a href="https://www.instagram.com/"><i class="fab fa-instagram fa-5x"></i> <br> </a>
+                <a href="https://www.pinterest.com/"><i class="fab fa-pinterest fa-5x"></i> <br> </a>
+
+            </div>
+
+            <div class="container" >
+                <br>
+                <div class="iframe-container">
+                    <iframe frameborder="0" style="border:100px"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.217456881076!2d-0.10330624870451857!3d51.527571237327635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761ca7b1d83351%3A0x570d19c20ab22a83!2sCity%2C+University+of+London!5e0!3m2!1sen!2suk!4v1553189565843" allowfullscreen>
+                    </iframe>
+                </div>
+                <br>
+            </div>
+
+
+
         </div>
-        <div class="social-networks">
-            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-            <a href="#" class="facebook"><i class="fab fa-facebook-square"></i></a>
-            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
-        </div>
-    </footer>
+
+    </div>
 </div>
-</body>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-</body>
-</html>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
