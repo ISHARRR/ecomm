@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . forms import ContactForm
 from . models import ContactModel
 from django.contrib import messages
@@ -24,4 +24,5 @@ def contact(request):
         query = ContactModel.objects.create(first_name=first_name, last_name=last_name, email=email, message=message)
         messages.error(request, 'You message has been submitted')
         print(form.cleaned_data)
+        # return redirect(request, 'home')
     return render(request, "contact_page.html", content)

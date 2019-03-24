@@ -5,7 +5,13 @@ from . models import ContactModel
 
 
 class ContactModelAdmin(admin.ModelAdmin):
-    list_display = [ 'first_name']
+    list_display = ['first_name']
+
+    search_fields = ['id',]
+
+    list_filter = ['id']
+
+    ordering = ('id',)
 
     class Meta:
         model = ContactModel

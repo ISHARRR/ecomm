@@ -12,8 +12,8 @@ class LoginForm(forms.Form):
 
 class RegisterForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Username",}))
-    firstname = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "First Name",}))
-    lastname = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Last Name",}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "First Name",}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Last Name",}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": "email",}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control"}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={"class": "form-control"}), label='Confirm password',)

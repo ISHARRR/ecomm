@@ -30,7 +30,7 @@ def cart_yard(request):
     return render(request, 'carts/yard.html', {'cart': obj})
 
 
-def cart_update(request):
+def update(request):
     product_id = request.POST.get('product_id')
     if product_id is not None:
         product_object = ProductModel.objects.get(id=product_id)

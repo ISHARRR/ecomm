@@ -1,11 +1,10 @@
-from django.shortcuts import render
 from django.views.generic import ListView
 from products.models import ProductModel
 from django.db.models import Q
 # Create your views here.
 
 
-class SearchProductListView(ListView):
+class SearchProducts(ListView):
     template_name = "search/search.html"
 
     def get_queryset(self):

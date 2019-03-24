@@ -11,18 +11,18 @@ User = settings.AUTH_USER_MODEL
 class CartManager(models.Manager):
     def new_get(self, request):
         cart_id = request.session.get('cart_id', None)
-        qs = self.get_queryset().filter(id=cart_id)
-        if qs.count() == 1:
+        queryset = self.get_queryset().filter(id=cart_id)
+        if queryset.count() == 1:
             new_object = False
-            obj = qs.first()
-            if request.user.is_authenticated and obj.user is None:
-                obj.user = request.user
-                obj.save()
+            cart_object = queryset.first()
+            if request.user.is_authenticated and cart_object.user is None:
+                cart_object.user = request.user
+                cart_object.save()
         else:
-            obj = Cart.objects.new_cart(user=request.user)
+            cart_object = Cart.objects.new_cart(user=request.user)
             new_object = True
-            request.session['cart_id'] = obj.id
-        return obj, new_object
+            request.session['cart_id'] = cart_object.id
+        return cart_object, new_object
 
     def new_cart(self, user=None):
         user_object = None
@@ -37,7 +37,6 @@ class Cart(models.Model):
     product = models.ManyToManyField(ProductModel, blank=True)
     subtotal = models.DecimalField(default=0.00, max_digits=100000, decimal_places=2)
     total = models.DecimalField(default=0.00, max_digits=100000, decimal_places=2)
-    updated = models.DateTimeField(auto_now=True)
 
     objects = CartManager()
 
@@ -45,7 +44,7 @@ class Cart(models.Model):
         return str(self.id)
 
 
-def m2m_save_cart_r(sender, instance, action, **kwargs):
+def m2m_save_cart_r(instance, action, **kwargs):
     if action == 'post_add' or action == 'post_remove' or action == 'post_clear':
         product = instance.product.all()
         total = 0
@@ -59,11 +58,11 @@ def m2m_save_cart_r(sender, instance, action, **kwargs):
 m2m_changed.connect(m2m_save_cart_r, sender=Cart.product.through)
 
 
-def pre_save_cart_r(sender, instance, **kwargs):
+def pre_save_cart(instance, **kwargs):
     if instance.subtotal > 0:
         instance.total = instance.subtotal
     else:
         instance.total = 0.00
 
 
-pre_save.connect(pre_save_cart_r, sender=Cart)
+pre_save.connect(pre_save_cart, sender=Cart)

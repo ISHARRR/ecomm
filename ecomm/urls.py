@@ -21,36 +21,36 @@ from django.contrib import admin
 from django.contrib.auth.views import (
     LogoutView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView)
 from django.urls import path, re_path
-from . views import home_page, login_page, about_page, register_page, profile, update_password, update_profile
+from . views import login_page, about, register_page, profile, update_password, update_profile
 from contact.views import contact
-from products.views import (ProductListView,
+from products.views import (ProductList,
                             # ProductFilter,
-                            ProductDetailView,
-                            ProductDetailSlugView,
-                            ProductFeaturedDetailView,
-                            ProductFeaturedListView,
-                            ProductSaleListView,
+                            ProductDetail,
+                            ProductDetailSlug,
+                            ProductFeaturedDetail,
+                            ProductFeatured,
+                            ProductSale,
                             )
 
-from search.views import (SearchProductListView)
-from carts.views import (cart_yard, cart_update)
+from search.views import (SearchProducts)
+from carts.views import (cart_yard, update)
 
 urlpatterns = [
-    path('', ProductFeaturedListView.as_view(template_name='home_page.html'), name="home"),
-    path('sale/', ProductSaleListView.as_view(template_name='sale.html'), name="sale"),
+    path('', ProductFeatured.as_view(template_name='home_page.html'), name="home"),
+    path('sale/', ProductSale.as_view(template_name='sale.html'), name="sale"),
     # path('', home_page, name="home"),
-    path('about/', about_page, name="about"),
+    path('about/', about, name="about"),
     path('contact/', contact, name="contact_us"),
     path('login/', login_page, name="login"),
     path('register/', register_page, name="register"),
     path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
-    # path('products/', ProductListView.as_view(), namespace="products"),
-    path('products/', ProductListView.as_view(), name="products"),
+    # path('products/', ProductList.as_view(), namespace="products"),
+    path('products/', ProductList.as_view(), name="products"),
     # path('filter/', FilterView.as_view(model=ProductModel), name='filter'),
-    path('search/', SearchProductListView.as_view(), name="search"),
-    re_path(r'^products/(?P<slug>[\w-]+)/$', ProductDetailSlugView.as_view(), name='prod_detail'),
+    path('search/', SearchProducts.as_view(), name="search"),
+    re_path(r'^products/(?P<slug>[\w-]+)/$', ProductDetailSlug.as_view(), name='prod_detail'),
     path('cart/', cart_yard, name="cart"),
-    path('cart-update/', cart_update, name="cart_update"),
+    path('cart-update/', update, name="update"),
     path('change-password/', update_password, name='update_password'),
     path('password/', update_password, name='password'),
     path('profile/', profile, name='profile'),
@@ -63,8 +63,8 @@ urlpatterns = [
     path('reset-password/complete', PasswordResetCompleteView.as_view(template_name='pass_reset_complete.html'),
          name='password_reset_complete'),
 
-    # path('featured/<int:pk>/', ProductFeaturedDetailView.as_view()),
-    # path('products/<int:pk>/', ProductDetailView.as_view()),
+    # path('featured/<int:pk>/', ProductFeaturedDetail.as_view()),
+    # path('products/<int:pk>/', ProductDetail.as_view()),
 
 
     path('admin/', admin.site.urls),

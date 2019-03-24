@@ -9,6 +9,6 @@ class ContactModel(models.Model):
     message = models.TextField()
 
     def __str__(self):
-        return str(self.email)
+        return "ID: " + str(self.id) + ", " + "Email: " + self.email
 
 

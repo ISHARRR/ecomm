@@ -10,15 +10,6 @@ from django.contrib import messages
 from . forms import UpdateProfile
 
 
-def home_page(request):
-    content = {
-        "title": "Home",
-        "content": "home page!",
-
-    }
-    return render(request, "home_page.html", content)
-
-
 def login_page(request):
     form = LoginForm(request.POST or None)
     content = {
@@ -58,19 +49,15 @@ def register_page(request):
         last_name = form.cleaned_data.get("last_name")
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
-        new_user = User.objects.create_user(username, email, password)
-        new_user.first_name = first_name
-        new_user.last_name = last_name
+        new_user = User.objects.create_user(username, email, password, first_name=first_name, last_name=last_name)
         print(new_user)
         return redirect("login")
     return render(request, "register_page.html", content)
 
 
-def about_page(request):
+def about(request):
     content = {
         "title": "about",
-        "content": "home page!",
-
     }
     return render(request, "about.html", content)
 

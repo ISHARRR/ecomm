@@ -1,36 +1,33 @@
 from django.http import Http404
-from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 # Create your views here.
 
 from . models import ProductModel
-# from . models import ProductModel, ProductFilter
-
 from carts.models import Cart
 
 
-class ProductFeaturedListView(ListView):
+class ProductFeatured(ListView):
     template_name = "home_page.html"
 
     def get_queryset(self, *args, **kwargs):
         return ProductModel.objects.all().active().featured()
 
 
-class ProductSaleListView(ListView):
+class ProductSale(ListView):
     template_name = "sale.html"
 
     def get_queryset(self, *args, **kwargs):
         return ProductModel.objects.all().active().sale()
 
 
-class ProductFeaturedDetailView(DetailView):
+class ProductFeaturedDetail(DetailView):
     template_name = "products/featured_detail.html"
 
     def get_queryset(self, *args, **kwargs):
         return ProductModel.objects.all().active().featured()
 
 
-class ProductListView(ListView):
+class ProductList(ListView):
     template_name = "products/product_list.html"
 
     def get_queryset(self):
@@ -38,12 +35,12 @@ class ProductListView(ListView):
         return obj
 
 
-class ProductDetailSlugView(DetailView):
+class ProductDetailSlug(DetailView):
     queryset = ProductModel.objects.all()
     template_name = "products/product_detail.html"
 
     def get_context_data(self, **kwargs):
-        context = super(ProductDetailSlugView, self).get_context_data(**kwargs)
+        context = super(ProductDetailSlug, self).get_context_data(**kwargs)
         cart_object, new_object = Cart.objects.new_get(self.request)
         context['cart'] = cart_object
         return context
@@ -68,12 +65,12 @@ class ProductDetailSlugView(DetailView):
 #     return render(request, 'sale.html', {'filter': filter_qs})
 
 
-class ProductDetailView(DetailView):
+class ProductDetail(DetailView):
     # queryset = ProductModel.objects.all()
     template_name = "products/product_detail.html"
 
     def get_context_data(self, **kwargs):
-        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        context = super(ProductDetail, self).get_context_data(**kwargs)
 
         return context
 
